@@ -20,6 +20,7 @@
             background-color: var(--white);
             color: var(--black);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
@@ -32,18 +33,19 @@
             text-align: center;
             background: linear-gradient(rgba(15,23,42,0.03), transparent);
         }
-        header h1 { font-size: 3.2rem; margin: 0; letter-spacing: 4px; font-weight: 900; color: var(--black); }
-        header .sub { font-size: 1.1rem; color: var(--gold); letter-spacing: 5px; margin-top: 15px; font-weight: 600; }
+        header h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0; letter-spacing: 4px; font-weight: 900; color: var(--black); }
+        header .sub { font-size: 1.1rem; color: var(--gold); letter-spacing: 5px; margin-top: 15px; font-weight: 600; text-transform: uppercase; }
 
         section { padding: 80px 0; }
         .section-label { font-weight: 800; color: var(--gold); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 12px; display: block; }
-        .section-title { font-size: 2rem; margin: 0 0 45px 0; font-weight: 800; }
+        .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 45px 0; font-weight: 800; }
 
         /* 趨勢報告 */
         .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .report-item { padding: 30px; border: 1px solid var(--border); }
+        .report-item { padding: 30px; border: 1px solid var(--border); transition: 0.3s; }
+        .report-item:hover { border-color: var(--gold); }
         .report-item h3 { font-size: 2.2rem; margin: 0 0 10px 0; color: var(--gold); }
-        .report-item p { margin: 0; font-size: 0.9rem; color: var(--dark-gray); }
+        .report-item p { margin: 0; font-size: 0.95rem; color: var(--dark-gray); }
 
         /* 動力分析 */
         .motivation-flex { display: flex; gap: 50px; align-items: flex-start; flex-wrap: wrap; }
@@ -52,7 +54,7 @@
         .m-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .m-item b { font-size: 1.15rem; display: block; margin-bottom: 5px; color: var(--gold); }
 
-        /* 方案金額排版優化 */
+        /* 方案金額排版 */
         .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .price-card { 
             padding: 50px 25px; 
@@ -61,12 +63,13 @@
             display: flex; 
             flex-direction: column;
             background: var(--white);
+            transition: 0.4s;
         }
         .price-card.featured { 
             background-color: var(--black); 
             color: var(--white); 
             border: 2px solid var(--gold); 
-            transform: scale(1.03); 
+            transform: scale(1.05); 
             z-index: 2;
         }
         .price-card h4 { margin: 0; font-size: 1.2rem; letter-spacing: 2px; }
@@ -78,31 +81,28 @@
         .amount-sub { font-size: 0.9rem; color: #94a3b8; margin-top: 8px; }
 
         .features { list-style: none; padding: 0; text-align: left; margin: 30px 0; font-size: 0.9rem; flex-grow: 1; }
-        .features li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .features li::before { content: "•"; position: absolute; left: 0; color: var(--gold); }
+        .features li { margin-bottom: 12px; position: relative; padding-left: 20px; color: inherit; opacity: 0.9; }
+        .features li::before { content: "•"; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
 
         /* KOL */
-        .kol-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 40px; }
-        .kol-item { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #000; }
-        .kol-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
-        .kol-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(15,23,42,0.8); color: var(--gold); padding: 10px 0; text-align: center; font-size: 0.8rem; font-weight: bold; }
+        .kol-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+        .kol-item { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #000; border-radius: 4px; }
+        .kol-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transition: 0.8s; }
+        .kol-item:hover img { transform: scale(1.1); opacity: 0.9; }
+        .kol-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(15,23,42,0.85); color: var(--gold); padding: 12px 0; text-align: center; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; }
 
         /* 廣告投放 */
-        .ad-banner { background: #f1f5f9; padding: 45px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
-        .ad-pricing-box { text-align: center; border-left: 2px solid var(--border); padding-left: 40px; }
+        .ad-banner { background: #f1f5f9; padding: 50px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; border-radius: 4px; }
+        .ad-pricing-box { text-align: center; border-left: 2px solid var(--border); padding-left: 50px; }
 
-        /* 標籤與頁尾 */
-        .partner-flex { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 50px; }
-        .tag { border: 1px solid var(--border); padding: 5px 15px; font-size: 0.8rem; color: var(--dark-gray); }
-
-        footer { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
-        .cta-btn { display: inline-block; background: var(--gold); color: var(--white); padding: 18px 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 2px; transition: 0.3s; }
-        .cta-btn:hover { background: var(--black); transform: translateY(-3px); }
+        footer { padding: 120px 0; text-align: center; border-top: 1px solid var(--border); background: #fafafa; }
+        .cta-btn { display: inline-block; background: var(--gold); color: var(--white); padding: 20px 60px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 2px; transition: 0.4s; letter-spacing: 2px; }
+        .cta-btn:hover { background: var(--black); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         @media (max-width: 900px) {
-            .price-grid, .report-grid, .kol-gallery { grid-template-columns: 1fr; }
-            .price-card.featured { transform: scale(1); }
-            .ad-pricing-box { border-left: none; padding-left: 0; width: 100%; }
+            .price-grid, .kol-gallery { grid-template-columns: 1fr; }
+            .price-card.featured { transform: scale(1); margin: 20px 0; }
+            .ad-pricing-box { border-left: none; padding-left: 0; width: 100%; border-top: 1px solid var(--border); padding-top: 30px; }
             header h1 { font-size: 2.2rem; }
             .ad-banner { flex-direction: column; text-align: center; }
         }
@@ -115,11 +115,11 @@
         <div class="container">
             <span class="sub">HUA CE DIGITAL MARKETING</span>
             <h1>畫策數位行銷顧問方案</h1>
-            <p style="color: #64748b; font-size: 1.1rem; margin-top: 15px;">啟動 2026 品牌影響力與全通路流量變現</p>
+            <p style="color: #64748b; font-size: 1.1rem; margin-top: 15px; font-weight: 500;">啟動 2026 品牌影響力與全通路流量變現</p>
         </div>
     </header>
 
-    <!-- 01. 2026 趨勢報告 -->
+    <!-- 01. 趨勢報告 -->
     <section class="container">
         <span class="section-label">01 / TREND REPORT</span>
         <h2 class="section-title">2026 短影音影響力報告</h2>
@@ -149,20 +149,20 @@
             <div class="m-left">
                 <span class="section-label">02 / MOMENTUM</span>
                 <h2 class="section-title" style="color: white;">佈局影音的<br>核心動力</h2>
-                <p style="opacity: 0.6;">協助品牌在流量紅利期<br>建立絕對的競爭優勢</p>
+                <p style="opacity: 0.6; font-size: 1.1rem;">協助品牌在流量紅利期<br>建立絕對的競爭優勢</p>
             </div>
             <div class="m-right">
                 <div class="m-item">
                     <b>演算法權重红利</b>
-                    <p style="opacity: 0.7; margin: 0;">社群平台目前全力向影音傾斜。現在進場可獲取高額免費流量，為品牌建立早期的注意力護城河。</p>
+                    <p style="opacity: 0.8; margin: 0;">社群平台目前全力向影音傾斜。現在進場可獲取高額免費流量，為品牌建立早期的注意力護城河。</p>
                 </div>
                 <div class="m-item">
                     <b>建立可視化的品牌信任</b>
-                    <p style="opacity: 0.7; margin: 0;">影音比圖文更能傳遞專業細節與企業真實溫度，透過視覺化溝通直接縮短客戶的決策周期。</p>
+                    <p style="opacity: 0.8; margin: 0;">影音比圖文更能傳遞專業細節與企業真實溫度，透過視覺化溝通直接縮短客戶的決策周期。</p>
                 </div>
                 <div class="m-item" style="border: none;">
                     <b>跨領域全通路引流</b>
-                    <p style="opacity: 0.7; margin: 0;">無論是企業品牌轉型還是實體消費引流，短影音具備最強的擴散力，是回報率最高的數位資產。</p>
+                    <p style="opacity: 0.8; margin: 0;">無論是企業品牌轉型還是實體消費引流，短影音具備最強的擴散力，是回報率最高的數位資產。</p>
                 </div>
             </div>
         </div>
@@ -172,19 +172,19 @@
     <section class="container">
         <span class="section-label">03 / SOLUTIONS</span>
         <h2 class="section-title">雙核心解決方案</h2>
-        <div class="report-grid" style="grid-template-columns: 1fr 1fr;">
-            <div style="padding: 40px; background: #f8fafc; border-top: 4px solid var(--black);">
-                <h3 style="margin-top: 0;">🏢 企業轉型 IP 建置</h3>
-                <p>協助企業將硬實力轉化為影音敘事。透過建構具影響力的產業 IP，強化品牌信任與商務開發的專業轉化率。</p>
+        <div class="report-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div style="padding: 45px; background: #f8fafc; border-top: 4px solid var(--black); border-radius: 4px;">
+                <h3 style="margin-top: 0; font-size: 1.5rem;">🏢 企業轉型 IP 建置</h3>
+                <p style="color: var(--dark-gray);">協助企業將硬實力轉化為影音敘事。透過建構具影響力的產業 IP，強化品牌信任與商務開發的專業轉化率。</p>
             </div>
-            <div style="padding: 40px; background: #f8fafc; border-top: 4px solid var(--gold);">
-                <h3 style="margin-top: 0;">🛒 品牌商務實體引流</h3>
-                <p>針對零售、連鎖與服務行業，設計高效轉化路徑。利用視覺張力引發衝動消費，並精準引流至指定成交點。</p>
+            <div style="padding: 45px; background: #f8fafc; border-top: 4px solid var(--gold); border-radius: 4px;">
+                <h3 style="margin-top: 0; font-size: 1.5rem;">🛒 品牌商務實體引流</h3>
+                <p style="color: var(--dark-gray);">針對零售、連鎖與服務行業，設計高效轉化路徑。利用視覺張力引發衝動消費，並精準引流至指定成交點。</p>
             </div>
         </div>
     </section>
 
-    <!-- 04. 製作方案 (金額不跑版) -->
+    <!-- 04. 製作方案 -->
     <section style="background-color: #fcfcfc;">
         <div class="container">
             <span class="section-label" style="text-align: center;">04 / PRODUCTION PLANS</span>
@@ -216,6 +216,7 @@
                         <li><strong>產業核心 IP 形象建置</strong></li>
                         <li>季度性主題系列規劃</li>
                         <li>全通路發布策略建議</li>
+                        <li>專業調色與視覺優化</li>
                     </ul>
                 </div>
                 <!-- 30部 -->
@@ -258,8 +259,8 @@
                 <div class="kol-overlay">品牌服務展示</div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <p><strong>一站式網紅媒合與內容製作 | <span class="price-nowrap text-gold">NT$ 9,800 起</span></strong></p>
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 1.1rem;"><strong>一站式網紅媒合與內容製作 | <span class="price-nowrap text-gold">NT$ 9,800 起</span></strong></p>
         </div>
     </section>
 
@@ -267,13 +268,13 @@
     <div class="container" style="margin-bottom: 80px;">
         <div class="ad-banner">
             <div style="flex: 2; min-width: 300px;">
-                <h3 style="margin-top: 0;">數據驅動廣告投放</h3>
-                <p style="color: #64748b; margin: 0; font-size: 0.95rem;">運用 AI 數據篩選受眾，配合「短秒數內容預熱」與「漏斗式引流」，將流量精準轉化為有效名單。</p>
+                <h3 style="margin-top: 0; font-size: 1.6rem;">數據驅動廣告投放</h3>
+                <p style="color: #64748b; margin: 0; font-size: 1rem; line-height: 1.7;">運用 AI 數據篩選受眾，配合「短秒數內容預熱」與「漏斗式引流」，將流量精準轉化為有效名單。</p>
             </div>
             <div class="ad-pricing-box">
-                <div style="font-size: 0.8rem; color: #94a3b8;">單月預算門檻</div>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--gold);"><span class="price-nowrap">$ 50,000</span></div>
-                <div style="font-weight: bold; margin-top: 5px;">專業服務費 25%</div>
+                <div style="font-size: 0.9rem; color: #94a3b8; letter-spacing: 1px;">單月預算門檻</div>
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--gold);"><span class="price-nowrap">$ 50,000</span></div>
+                <div style="font-weight: bold; margin-top: 5px; color: var(--black);">專業服務費 25%</div>
             </div>
         </div>
     </div>
@@ -282,17 +283,12 @@
     <footer>
         <div class="container">
             <span class="section-label">GET STARTED</span>
-            <h2 style="font-size: 2.5rem; margin-top: 0;">啟動品牌影音增長引擎</h2>
-            <p style="color: #64748b; margin-bottom: 45px;">為企業打造數位轉型與流量變現的最短路徑</p>
+            <h2 style="font-size: clamp(2rem, 5vw, 2.5rem); margin: 0 0 10px 0; font-weight: 800;">啟動品牌影音增長引擎</h2>
+            <p style="color: #64748b; margin-bottom: 50px; font-size: 1.1rem;">為企業打造數位轉型與流量變現的最短路徑</p>
             
             <a href="https://lin.ee/dwVCBKZ" class="cta-btn">預約 30 分鐘免費顧問諮詢</a>
             
-            <div class="partner-flex">
-                <span class="tag">中華電信</span><span class="tag">LINE Official Account</span><span class="tag">ikari 咖啡</span><span class="tag">小林髮廊</span>
-                <span class="tag">BNI 商業平台</span><span class="tag">JCI 國際青年商會</span><span class="tag">Google Ads</span><span class="tag">TikTok Ads</span>
-            </div>
-            
-            <div style="margin-top: 80px; font-size: 0.85rem; color: #94a3b8; line-height: 2;">
+            <div style="margin-top: 80px; font-size: 0.85rem; color: #94a3b8; line-height: 2; border-top: 1px solid #eee; padding-top: 40px;">
                 畫策數位行銷 | TEL: 0916-272099 | MAIL: chunk.huace@gmail.com<br>
                 © 2025 HuaCe Digital Marketing. All Rights Reserved.
             </div>
